@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ *
+ * Direction: a field manual. Drab paper stock, one signal colour, mono used only
+ * for structural labels (day numbers, section counters, categories) because in a
+ * manual those numbers are navigation, not decoration.
+ *
+ * Typefaces are system stacks on purpose: no webfont request, so the app shell
+ * renders identically offline and there is no layout shift on first paint.
+ */
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-serif: ui-serif, Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+:root {
+  --paper: #eceee8;
+  --surface: #f7f8f4;
+  --ink: #131816;
+  --muted: #59635c;
+  --rule: #d2d6cc;
+  --accent: #175e4c;
+  --accent-ink: #ffffff;
+  --accent-soft: #dde7e0;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1211;
+    --surface: #161b19;
+    --ink: #e4e8e2;
+    --muted: #97a199;
+    --rule: #262d29;
+    --accent: #58c39f;
+    --accent-ink: #08110d;
+    --accent-soft: #1b2b25;
+    color-scheme: dark;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Structural label: category tags, day plates, section counters. */
+.plate {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Rendered lens prose. Serif body, because a lens is read, not scanned. */
+.lens-prose {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.lens-prose p {
+  margin-block: 0 1em;
+}
+
+.lens-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.lens-prose strong {
+  font-weight: 600;
+}
+
+.lens-prose em {
+  font-style: italic;
+}
+
+.lens-prose a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration-line: underline;
+}
+
+.lens-prose ul,
+.lens-prose ol {
+  margin-block: 0 1em;
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+.lens-prose ol {
+  list-style: decimal;
+}
+
+.lens-prose li {
+  margin-block: 0.35em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
