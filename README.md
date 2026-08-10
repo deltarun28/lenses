@@ -2,6 +2,11 @@
 
 One practical thinking lens each day.
 
+**→ [deltarun28.github.io/lenses](https://deltarun28.github.io/lenses/)**
+
+Open it on a phone and add it to the home screen: menu → _Install app_ on
+Android, Share → _Add to Home Screen_ on iOS.
+
 Each lens is a decision tool — a mental model, framework or strategic concept —
 written as a short field-manual entry with three worked examples: military
 strategy, leadership and organisational decision-making, and building products
