@@ -119,9 +119,16 @@ Adding or editing a lens is a content-only change. See
 `LENS_SECTION_HEADINGS`; changing one there requires updating every file in
 `src/content/lenses/` in the same commit.
 
+Principle, Explanation, Questions and Common Misuse are required. The three
+worked examples are optional individually — a lens with no honest military
+application omits that heading rather than carrying an invented one — but a lens
+with no examples at all is rejected.
+
 Do not write filler content. Do not generate lenses in bulk without the examples
 being specific and mechanically plausible. The "Common Misuse" section must
-genuinely argue against the lens.
+genuinely argue against the lens. **Never invent an example to satisfy the
+validator**: omitting the section is the supported answer, and is why it is
+optional.
 
 ## Preserving the extension points
 

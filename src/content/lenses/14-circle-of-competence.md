@@ -1,7 +1,7 @@
 ---
 id: circle-of-competence
 title: Circle of Competence
-sequence: 10
+sequence: 14
 categories:
   - Foundations
 summary: Know where your judgement is reliable, and treat the boundary as more important than the size.

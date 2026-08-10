@@ -46,6 +46,31 @@ export const LENS_SECTION_ORDER: readonly LensSectionKey[] = [
   "commonMisuse",
 ] as const;
 
+/**
+ * The three worked examples are optional individually.
+ *
+ * Not every lens applies cleanly to every domain, and a forced example is worse
+ * than an absent one — it teaches the reader a use the lens does not really
+ * support. A lens omits the domains it does not fit and keeps the ones it does.
+ *
+ * A lens with no examples at all is still rejected: the whole format is the
+ * claim that a thinking tool is worth having because it changes a decision
+ * somewhere concrete.
+ */
+export const LENS_EXAMPLE_SECTION_KEYS = [
+  "militaryExample",
+  "leadershipExample",
+  "productExample",
+] as const;
+
+export type LensExampleSectionKey = (typeof LENS_EXAMPLE_SECTION_KEYS)[number];
+
+/** Sections every lens must carry, whatever it is about. */
+export const LENS_REQUIRED_SECTION_KEYS = LENS_SECTION_ORDER.filter(
+  (key): key is Exclude<LensSectionKey, LensExampleSectionKey> =>
+    !(LENS_EXAMPLE_SECTION_KEYS as readonly LensSectionKey[]).includes(key),
+);
+
 /** Short labels used in the stepper UI. */
 export const LENS_SECTION_LABELS: Record<LensSectionKey, string> = {
   principle: "Principle",
@@ -59,13 +84,17 @@ export const LENS_SECTION_LABELS: Record<LensSectionKey, string> = {
 
 export type LensStatus = "draft" | "published";
 
-/** Prose sections hold rendered HTML; questions stay a list so the UI can format it. */
+/**
+ * Prose sections hold rendered HTML; questions stay a list so the UI can format
+ * it. An example is `null` when the lens does not fit that domain — distinct
+ * from an empty string, which would mean an authored but empty section.
+ */
 export interface LensContent {
   principle: string;
   explanation: string;
-  militaryExample: string;
-  leadershipExample: string;
-  productExample: string;
+  militaryExample: string | null;
+  leadershipExample: string | null;
+  productExample: string | null;
   questions: string[];
   commonMisuse: string;
 }

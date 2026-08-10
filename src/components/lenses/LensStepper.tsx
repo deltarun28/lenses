@@ -27,12 +27,21 @@ interface StepperSection {
   items?: string[];
 }
 
+/**
+ * Sections the lens actually has, in reading order.
+ *
+ * A worked example is null when the lens does not fit that domain, and those
+ * are dropped rather than rendered blank — so the step count reflects what is
+ * there to read ("01 / 06"), and the jump control has no dead buttons.
+ */
 function buildSections(content: LensContent): StepperSection[] {
-  return LENS_SECTION_ORDER.map((key) => ({
+  return LENS_SECTION_ORDER.filter(
+    (key) => key === "questions" || content[key] !== null,
+  ).map((key) => ({
     key,
     label: LENS_SECTION_LABELS[key],
     heading: LENS_SECTION_HEADINGS[key],
-    html: key === "questions" ? undefined : content[key],
+    html: key === "questions" ? undefined : (content[key] ?? undefined),
     items: key === "questions" ? content.questions : undefined,
   }));
 }

@@ -1,7 +1,7 @@
 ---
 id: opportunity-cost
 title: Opportunity Cost
-sequence: 8
+sequence: 11
 categories:
   - Foundations
   - Economics & Incentives

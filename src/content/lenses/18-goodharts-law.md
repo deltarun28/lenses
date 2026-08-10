@@ -1,7 +1,7 @@
 ---
 id: goodharts-law
 title: Goodhart's Law
-sequence: 16
+sequence: 18
 categories:
   - Economics & Incentives
 summary: When a measure becomes the target, it stops being a good measure.
@@ -14,6 +14,7 @@ related:
   - second-order-thinking
   - theory-of-constraints
   - map-is-not-the-territory
+  - principal-agent-problem
 publishedAt: 2026-08-03
 status: published
 ---

@@ -1,7 +1,7 @@
 ---
 id: lindy-effect
 title: Lindy Effect
-sequence: 13
+sequence: 19
 categories:
   - Foundations
   - Probability & Risk

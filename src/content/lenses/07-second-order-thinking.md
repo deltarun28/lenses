@@ -1,7 +1,7 @@
 ---
 id: second-order-thinking
 title: Second-Order Thinking
-sequence: 5
+sequence: 7
 categories:
   - Foundations
 summary: Ask what happens after the obvious consequence — the reaction, the adaptation, the next move.

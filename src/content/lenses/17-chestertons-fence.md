@@ -1,7 +1,7 @@
 ---
 id: chestertons-fence
 title: Chesterton's Fence
-sequence: 12
+sequence: 17
 categories:
   - Foundations
 summary: Do not remove something until you understand why it was put there.

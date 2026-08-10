@@ -2,6 +2,8 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import {
+  LENS_EXAMPLE_SECTION_KEYS,
+  LENS_REQUIRED_SECTION_KEYS,
   LENS_SECTION_HEADINGS,
   LENS_SECTION_ORDER,
   bySequence,
@@ -9,6 +11,7 @@ import {
   toLensSummary,
   type Lens,
   type LensContent,
+  type LensExampleSectionKey,
   type LensSummary,
 } from "@/domain/lenses/lens";
 import { formatValidationError, lensFrontmatterSchema } from "@/domain/lenses/schema";
@@ -38,7 +41,7 @@ function parseLensFile(source: string, raw: string): Lens {
   }
 
   const sections = splitSectionsByHeading(content);
-  const missing = LENS_SECTION_ORDER.filter(
+  const missing = LENS_REQUIRED_SECTION_KEYS.filter(
     (key) => !sections.get(LENS_SECTION_HEADINGS[key]),
   ).map((key) => LENS_SECTION_HEADINGS[key]);
 
@@ -46,7 +49,7 @@ function parseLensFile(source: string, raw: string): Lens {
     throw new Error(
       `Missing required section(s) in ${source}: ${missing.join(", ")}.\n` +
         `Every lens file needs a "## " heading for each of: ` +
-        `${LENS_SECTION_ORDER.map((key) => LENS_SECTION_HEADINGS[key]).join(", ")}.`,
+        `${LENS_REQUIRED_SECTION_KEYS.map((key) => LENS_SECTION_HEADINGS[key]).join(", ")}.`,
     );
   }
 
@@ -58,12 +61,31 @@ function parseLensFile(source: string, raw: string): Lens {
     throw new Error(`The "Questions" section in ${source} must be a Markdown list.`);
   }
 
+  // An omitted example is null, not "". Whitespace-only counts as omitted, so a
+  // heading left behind with nothing under it does not render an empty card.
+  const example = (key: LensExampleSectionKey): string | null => {
+    const markdown = sectionMarkdown(key).trim();
+    return markdown ? renderMarkdown(markdown) : null;
+  };
+
+  const examples = {
+    militaryExample: example("militaryExample"),
+    leadershipExample: example("leadershipExample"),
+    productExample: example("productExample"),
+  };
+
+  if (LENS_EXAMPLE_SECTION_KEYS.every((key) => examples[key] === null)) {
+    throw new Error(
+      `${source} has no worked examples. A lens may omit the domains it does not ` +
+        `fit, but needs at least one of: ` +
+        `${LENS_EXAMPLE_SECTION_KEYS.map((key) => LENS_SECTION_HEADINGS[key]).join(", ")}.`,
+    );
+  }
+
   const contentModel: LensContent = {
     principle: renderMarkdown(sectionMarkdown("principle")),
     explanation: renderMarkdown(sectionMarkdown("explanation")),
-    militaryExample: renderMarkdown(sectionMarkdown("militaryExample")),
-    leadershipExample: renderMarkdown(sectionMarkdown("leadershipExample")),
-    productExample: renderMarkdown(sectionMarkdown("productExample")),
+    ...examples,
     questions,
     commonMisuse: renderMarkdown(sectionMarkdown("commonMisuse")),
   };

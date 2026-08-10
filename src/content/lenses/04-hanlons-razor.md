@@ -1,7 +1,7 @@
 ---
 id: hanlons-razor
 title: Hanlon's Razor
-sequence: 3
+sequence: 4
 categories:
   - Foundations
 summary: Do not attribute to malice what is adequately explained by pressure, confusion, or incompetence.

@@ -1,7 +1,7 @@
 ---
 id: bayesian-thinking
 title: Bayesian Thinking
-sequence: 6
+sequence: 8
 categories:
   - Foundations
   - Probability & Risk
@@ -15,6 +15,7 @@ related:
   - map-is-not-the-territory
   - margin-of-safety
   - second-order-thinking
+  - base-rates
 publishedAt: 2026-08-03
 status: published
 ---

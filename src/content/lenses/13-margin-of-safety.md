@@ -1,7 +1,7 @@
 ---
 id: margin-of-safety
 title: Margin of Safety
-sequence: 9
+sequence: 13
 categories:
   - Foundations
   - Probability & Risk

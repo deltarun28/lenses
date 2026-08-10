@@ -1,7 +1,7 @@
 ---
 id: systems-thinking
 title: Systems Thinking
-sequence: 7
+sequence: 10
 categories:
   - Foundations
   - Systems Thinking
@@ -15,6 +15,7 @@ related:
   - theory-of-constraints
   - second-order-thinking
   - goodharts-law
+  - feedback-loops
 publishedAt: 2026-08-03
 status: published
 ---

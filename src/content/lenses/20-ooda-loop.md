@@ -1,7 +1,7 @@
 ---
 id: ooda-loop
 title: OODA Loop
-sequence: 14
+sequence: 20
 categories:
   - Foundations
   - Military Thinking
@@ -15,6 +15,7 @@ related:
   - theory-of-constraints
   - inversion
   - map-is-not-the-territory
+  - commanders-intent
 publishedAt: 2026-08-03
 status: published
 ---

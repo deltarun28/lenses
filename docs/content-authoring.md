@@ -52,9 +52,9 @@ Negotiation, AI & Technology, Product Thinking.
 They are defined in `LENS_CATEGORIES` in `src/domain/lenses/lens.ts`. Adding a
 new category means editing that array.
 
-## Required sections
+## Sections
 
-Exactly these seven `##` headings, spelled exactly like this, in this order:
+These seven `##` headings, spelled exactly like this, in this order:
 
 ```markdown
 ## Principle
@@ -74,6 +74,20 @@ Exactly these seven `##` headings, spelled exactly like this, in this order:
 
 The strings come from `LENS_SECTION_HEADINGS` in `src/domain/lenses/lens.ts`.
 Changing one there is a breaking change to every content file.
+
+**Principle, Explanation, Questions and Common Misuse are required.**
+
+**The three worked examples are optional, individually.** Not every lens applies
+cleanly to every domain. If a lens has no honest military application, leave the
+`## Military Example` heading out rather than inventing one — a forced example
+is worse than an absent one, because it teaches a use the lens does not support.
+Omitted examples disappear from the stepper, so a lens with two reads `01 / 06`
+rather than showing a blank card.
+
+A heading left in place with nothing under it counts as omitted, so either form
+works. What is rejected is a lens with **no** examples at all: the format's whole
+claim is that a thinking tool earns its place by changing a decision somewhere
+concrete.
 
 - **Questions** must be a Markdown list (`- `). Each item becomes a numbered
   card entry. Three or four is right.
@@ -123,4 +137,5 @@ npm run build   # fails on any content error
 ```
 
 `tests/unit/lens-content.test.ts` checks the whole shipped library: required
-sections present, reading time computed, and every `related:` id resolving.
+sections present, at least one worked example per lens, reading time computed,
+and every `related:` id resolving.

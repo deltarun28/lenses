@@ -1,7 +1,7 @@
 ---
 id: first-principles-thinking
 title: First Principles Thinking
-sequence: 4
+sequence: 5
 categories:
   - Foundations
 summary: Strip a problem back to what is actually true, then reason up from there instead of from convention.

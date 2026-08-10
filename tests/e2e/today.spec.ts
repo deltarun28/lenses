@@ -45,4 +45,22 @@ test.describe("Today", () => {
     await expect(page.getByText("07 / 07")).toBeVisible();
     await expect(page.getByRole("button", { name: "Next section" })).toBeDisabled();
   });
+
+  test("skips a worked example the lens does not have", async ({ page }) => {
+    // Product-market-fit carries no military example. If one is written for it,
+    // point this at another lens that omits a section rather than deleting it.
+    await page.goto("lenses/product-market-fit");
+
+    const jump = page.getByRole("group", { name: "Jump to section" });
+    await expect(jump.getByRole("button", { name: "Military" })).toHaveCount(0);
+    await expect(jump.getByRole("button", { name: "Leadership" })).toBeVisible();
+
+    // Six sections, not seven, and no blank card in the middle.
+    await expect(page.getByText("01 / 06")).toBeVisible();
+    await page.getByRole("button", { name: "Next section" }).click();
+    await page.getByRole("button", { name: "Next section" }).click();
+    await expect(
+      page.getByRole("heading", { name: "Leadership Example", level: 2 }),
+    ).toBeVisible();
+  });
 });

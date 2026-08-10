@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { LENS_SECTION_ORDER } from "@/domain/lenses/lens";
+import {
+  LENS_EXAMPLE_SECTION_KEYS,
+  LENS_REQUIRED_SECTION_KEYS,
+} from "@/domain/lenses/lens";
 import {
   __testing,
   lensRepository,
@@ -65,6 +68,38 @@ describe("parseLensFile", () => {
     );
   });
 
+  it("accepts a lens that omits an example it does not fit", () => {
+    const withoutMilitary = allSections.filter(
+      (section) => !section.startsWith("## Military Example"),
+    );
+    const lens = parseLensFile("no-military.md", fileWithSections(withoutMilitary));
+
+    expect(lens.content.militaryExample).toBeNull();
+    expect(lens.content.leadershipExample).toContain("A leadership example.");
+    expect(lens.content.principle).toContain("The principle.");
+  });
+
+  it("treats an example heading with nothing under it as omitted", () => {
+    const emptyMilitary = allSections.map((section) =>
+      section.startsWith("## Military Example") ? "## Military Example\n\n" : section,
+    );
+
+    expect(
+      parseLensFile("empty-military.md", fileWithSections(emptyMilitary)).content
+        .militaryExample,
+    ).toBeNull();
+  });
+
+  it("rejects a lens with no worked examples at all", () => {
+    const noExamples = allSections.filter(
+      (section) => !section.endsWith("example."), // drops all three example sections
+    );
+
+    expect(() => parseLensFile("theory-only.md", fileWithSections(noExamples))).toThrow(
+      /at least one/,
+    );
+  });
+
   it("rejects a Questions section that is not a list", () => {
     const prose = allSections.map((section) =>
       section.startsWith("## Questions") ? "## Questions\n\nJust prose." : section,
@@ -106,7 +141,7 @@ describe("the shipped content library", () => {
   it("gives every lens all required sections and a reading estimate", async () => {
     const lenses = await lensRepository.listPublished();
     for (const lens of lenses) {
-      for (const key of LENS_SECTION_ORDER) {
+      for (const key of LENS_REQUIRED_SECTION_KEYS) {
         const value = lens.content[key];
         expect(
           Array.isArray(value) ? value.length : value.length,
@@ -114,6 +149,16 @@ describe("the shipped content library", () => {
         ).toBeGreaterThan(0);
       }
       expect(lens.readingMinutes, lens.id).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it("gives every lens at least one worked example", async () => {
+    const lenses = await lensRepository.listPublished();
+    for (const lens of lenses) {
+      const examples = LENS_EXAMPLE_SECTION_KEYS.map((key) => lens.content[key]).filter(
+        (value) => value !== null,
+      );
+      expect(examples.length, lens.id).toBeGreaterThan(0);
     }
   });
 

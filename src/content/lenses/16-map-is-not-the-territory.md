@@ -1,7 +1,7 @@
 ---
 id: map-is-not-the-territory
 title: The Map Is Not the Territory
-sequence: 11
+sequence: 16
 categories:
   - Foundations
 summary: Every model leaves things out, and the things it leaves out are where it fails.

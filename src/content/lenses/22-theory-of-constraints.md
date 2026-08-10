@@ -1,7 +1,7 @@
 ---
 id: theory-of-constraints
 title: Theory of Constraints
-sequence: 15
+sequence: 22
 categories:
   - Foundations
   - Systems Thinking
