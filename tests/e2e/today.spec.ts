@@ -2,12 +2,14 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Today", () => {
   test("shows a day number and opens today's lens", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("./");
 
     await expect(page.getByRole("heading", { name: "Today", level: 1 })).toBeVisible();
     await expect(page.getByText(/^Day \d{3}$/)).toBeVisible();
 
-    await page.getByRole("link", { name: /Read today's lens/i }).click();
+    // The link renders a typographic apostrophe (&rsquo;), so match either form
+    // rather than assuming the ASCII one.
+    await page.getByRole("link", { name: /Read today[’']s lens/i }).click();
 
     await expect(page).toHaveURL(/\/lenses\//);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -17,7 +19,7 @@ test.describe("Today", () => {
   });
 
   test("moves to another day and keeps it after a reload", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("./");
 
     await page.getByLabel("Day number").fill("5");
     await page.getByRole("button", { name: "Go to day" }).click();
@@ -30,7 +32,7 @@ test.describe("Today", () => {
   });
 
   test("steps through the sections of a lens", async ({ page }) => {
-    await page.goto("/lenses/inversion");
+    await page.goto("lenses/inversion");
 
     await expect(page.getByText("01 / 07")).toBeVisible();
     await page.getByRole("button", { name: "Next section" }).click();

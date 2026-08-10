@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Library", () => {
   test("searches by keyword and opens a result", async ({ page }) => {
-    await page.goto("/library");
+    await page.goto("library");
 
     const results = page.getByRole("listitem");
     const initialCount = await results.count();
@@ -20,7 +20,7 @@ test.describe("Library", () => {
   });
 
   test("filters by category and reports an empty result honestly", async ({ page }) => {
-    await page.goto("/library");
+    await page.goto("library");
 
     await page.getByRole("button", { name: "Military Thinking" }).click();
     await expect(page.getByRole("heading", { name: "OODA Loop" })).toBeVisible();

@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow the deploy to publish to Pages, and nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A queued deploy should wait for a running one rather than cancel it, so a
+# half-published site is never left in place.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_STATIC_EXPORT: "true"
+      # Project sites are served from /<repo>. Derived rather than hard-coded so
+      # renaming the repository does not silently break every asset URL.
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The same gates the project requires locally. A broken build should fail
+      # here rather than deploy.
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+      - run: npx next build --webpack
+
+      # Jekyll would drop _next/, which is every script and stylesheet.
+      - run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

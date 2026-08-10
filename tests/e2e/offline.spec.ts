@@ -10,7 +10,7 @@ test.describe("Offline", () => {
     page,
     context,
   }) => {
-    await page.goto("/");
+    await page.goto("./");
     const controlled = await page
       .waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, {
         timeout: 10_000,
@@ -20,19 +20,47 @@ test.describe("Offline", () => {
 
     test.skip(!controlled, "Service worker did not take control in time.");
 
-    await page.goto("/lenses/inversion");
+    await page.goto("lenses/inversion");
     await expect(
       page.getByRole("heading", { name: "Inversion", level: 1 }),
     ).toBeVisible();
 
     await context.setOffline(true);
 
-    await page.goto("/lenses/inversion");
+    await page.goto("lenses/inversion");
     await expect(
       page.getByRole("heading", { name: "Inversion", level: 1 }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "Principle", level: 2 }),
+    ).toBeVisible();
+
+    await context.setOffline(false);
+  });
+
+  test("a lens never opened on this device falls back to the offline page", async ({
+    page,
+    context,
+  }) => {
+    await page.goto("./");
+    const controlled = await page
+      .waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, {
+        timeout: 10_000,
+      })
+      .then(() => true)
+      .catch(() => false);
+
+    test.skip(!controlled, "Service worker did not take control in time.");
+
+    await context.setOffline(true);
+
+    // Never visited, so it is not in the runtime cache. This only works because
+    // /offline is precached at install; without that the navigation fails with
+    // a network error instead of a page.
+    await page.goto("lenses/margin-of-safety");
+
+    await expect(
+      page.getByRole("heading", { name: /not downloaded yet/i, level: 1 }),
     ).toBeVisible();
 
     await context.setOffline(false);

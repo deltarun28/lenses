@@ -77,6 +77,30 @@ npm run format       # Prettier
 
 Before finishing any task: `npm run lint && npm run typecheck && npm test && npm run build`.
 
+## Deployment targets
+
+The app is deployed as a static export to GitHub Pages, and can also run on a
+Next server. Both must keep working.
+
+```bash
+npm run build:static     # static export into out/, base path /lenses
+npm run test:e2e:static  # the e2e suite against that export
+```
+
+Two rules follow from this:
+
+1. **Nothing may require a server.** No route handlers, server actions,
+   `cookies()`, `headers()`, middleware or ISR. Every route prerenders today.
+   `npm run build:static` fails if that stops being true.
+2. **Root-relative strings need the base path.** Next applies it to `<Link>`,
+   routing and the manifest link — but not to manifest contents, metadata icon
+   URLs or service worker precache entries. Those go through `withBasePath()`
+   in `src/lib/base-path.ts`. A missed one 404s only on GitHub Pages, never
+   locally at the root.
+
+The Playwright specs navigate with **relative** paths (`page.goto("library")`).
+A leading slash is absolute and would silently discard the base path.
+
 ## Testing expectations
 
 Unit tests are required for any change to date handling, day selection, search

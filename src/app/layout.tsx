@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { withBasePath } from "@/lib/base-path";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -16,12 +17,14 @@ export const metadata: Metadata = {
     title: "Lenses",
     statusBarStyle: "default",
   },
+  // Next prefixes the base path onto the manifest link but not onto icon URLs,
+  // so these are prefixed by hand or they 404 on the GitHub Pages project site.
   icons: {
     icon: [
-      { url: "/icons/icon.svg", type: "image/svg+xml" },
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: withBasePath("/icons/icon.svg"), type: "image/svg+xml" },
+      { url: withBasePath("/icons/icon-192.png"), sizes: "192x192", type: "image/png" },
     ],
-    apple: "/icons/apple-touch-icon.png",
+    apple: withBasePath("/icons/apple-touch-icon.png"),
   },
   formatDetection: { telephone: false },
 };

@@ -1,6 +1,7 @@
 import { defaultCache } from "@serwist/next/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { Serwist } from "serwist";
+import { withBasePath } from "@/lib/base-path";
 
 /**
  * Service worker.
@@ -29,7 +30,8 @@ const serwist = new Serwist({
   fallbacks: {
     entries: [
       {
-        url: "/offline",
+        // A precache key, not a route, so the base path is applied by hand.
+        url: withBasePath("/offline"),
         matcher: ({ request }) => request.destination === "document",
       },
     ],
