@@ -38,7 +38,7 @@ test.describe("Offline", () => {
     await context.setOffline(false);
   });
 
-  test("a lens never opened on this device falls back to the offline page", async ({
+  test("an address that is not part of the app falls back to the offline page", async ({
     page,
     context,
   }) => {
@@ -54,13 +54,13 @@ test.describe("Offline", () => {
 
     await context.setOffline(true);
 
-    // Never visited, so it is not in the runtime cache. This only works because
-    // /offline is precached at install; without that the navigation fails with
-    // a network error instead of a page.
-    await page.goto("lenses/margin-of-safety");
+    // Not a page the app has, so it is not in the precache. The navigation falls
+    // back to the precached /offline page. Without that precache the navigation
+    // would fail with a network error instead of a page.
+    await page.goto("lenses/no-such-lens");
 
     await expect(
-      page.getByRole("heading", { name: /not downloaded yet/i, level: 1 }),
+      page.getByRole("heading", { name: /not available offline/i, level: 1 }),
     ).toBeVisible();
 
     await context.setOffline(false);
