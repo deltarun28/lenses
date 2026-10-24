@@ -14,6 +14,7 @@ related:
   - margin-of-safety
   - feedback-loops
   - lindy-effect
+  - barbell-strategy
 publishedAt: 2026-08-10
 status: published
 ---

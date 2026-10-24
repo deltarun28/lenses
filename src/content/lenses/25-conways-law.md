@@ -5,6 +5,7 @@ sequence: 25
 categories:
   - AI & Technology
   - Systems Thinking
+  - Organisations
 summary: Systems end up mirroring the communication structure of the organisation that built them.
 keywords:
   - architecture

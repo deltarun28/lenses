@@ -16,6 +16,7 @@ related:
   - second-order-thinking
   - goodharts-law
   - feedback-loops
+  - leverage-points
 publishedAt: 2026-08-03
 status: published
 ---

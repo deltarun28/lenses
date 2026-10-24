@@ -14,6 +14,7 @@ related:
   - second-order-thinking
   - margin-of-safety
   - chestertons-fence
+  - premortem
 publishedAt: 2026-08-03
 status: published
 ---

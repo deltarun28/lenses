@@ -15,6 +15,7 @@ related:
   - theory-of-constraints
   - first-principles-thinking
   - switching-costs
+  - strategy-kernel
 publishedAt: 2026-08-10
 status: published
 ---

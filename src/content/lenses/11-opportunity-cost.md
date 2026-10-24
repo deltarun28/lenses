@@ -15,6 +15,7 @@ related:
   - circle-of-competence
   - theory-of-constraints
   - margin-of-safety
+  - comparative-advantage
 publishedAt: 2026-08-03
 status: published
 ---

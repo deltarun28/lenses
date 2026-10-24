@@ -14,6 +14,7 @@ related:
   - mission-command
   - systems-thinking
   - hanlons-razor
+  - explicit-accountability
 publishedAt: 2026-08-10
 status: published
 ---

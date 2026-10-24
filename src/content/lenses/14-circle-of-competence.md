@@ -4,6 +4,7 @@ title: Circle of Competence
 sequence: 14
 categories:
   - Foundations
+  - Expertise & Learning
 summary: Know where your judgement is reliable, and treat the boundary as more important than the size.
 keywords:
   - expertise
@@ -14,6 +15,7 @@ related:
   - map-is-not-the-territory
   - opportunity-cost
   - bayesian-thinking
+  - verification-is-not-execution
 publishedAt: 2026-08-03
 status: published
 ---

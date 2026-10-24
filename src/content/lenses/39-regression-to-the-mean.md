@@ -14,6 +14,7 @@ related:
   - base-rates
   - survivorship-bias
   - expected-value
+  - pygmalion-effect
 publishedAt: 2026-08-10
 status: published
 ---

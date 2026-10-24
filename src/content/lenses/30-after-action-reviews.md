@@ -5,6 +5,7 @@ sequence: 30
 categories:
   - Leadership
   - Military Thinking
+  - Expertise & Learning
 summary: Compare what was supposed to happen with what did, and find the cause — separately from assigning fault.
 keywords:
   - learning

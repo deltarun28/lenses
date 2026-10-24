@@ -14,6 +14,8 @@ related:
   - bayesian-thinking
   - inversion
   - map-is-not-the-territory
+  - escalation-of-commitment
+  - correlated-errors
 publishedAt: 2026-08-10
 status: published
 ---

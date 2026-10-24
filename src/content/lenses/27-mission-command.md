@@ -16,6 +16,7 @@ related:
   - ooda-loop
   - systems-thinking
   - circle-of-competence
+  - authority-must-match-accountability
 publishedAt: 2026-08-10
 status: published
 ---

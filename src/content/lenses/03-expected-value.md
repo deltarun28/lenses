@@ -14,6 +14,8 @@ related:
   - base-rates
   - margin-of-safety
   - opportunity-cost
+  - kelly-criterion
+  - value-of-information
 publishedAt: 2026-08-10
 status: published
 ---

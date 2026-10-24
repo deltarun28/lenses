@@ -14,6 +14,7 @@ related:
   - after-action-reviews
   - systems-thinking
   - confirmation-bias
+  - abilene-paradox
 publishedAt: 2026-08-10
 status: published
 ---

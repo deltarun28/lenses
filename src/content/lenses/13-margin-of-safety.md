@@ -15,6 +15,7 @@ related:
   - inversion
   - bayesian-thinking
   - opportunity-cost
+  - error-budgets
 publishedAt: 2026-08-03
 status: published
 ---

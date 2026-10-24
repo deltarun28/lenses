@@ -15,6 +15,7 @@ related:
   - theory-of-constraints
   - map-is-not-the-territory
   - principal-agent-problem
+  - visibility-of-work
 publishedAt: 2026-08-03
 status: published
 ---

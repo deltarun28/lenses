@@ -14,6 +14,8 @@ related:
   - first-principles-thinking
   - systems-thinking
   - lindy-effect
+  - via-negativa
+  - rules-and-their-reasons
 publishedAt: 2026-08-03
 status: published
 ---

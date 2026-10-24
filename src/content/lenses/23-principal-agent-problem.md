@@ -4,6 +4,7 @@ title: Principal-Agent Problem
 sequence: 23
 categories:
   - Economics & Incentives
+  - Organisations
 summary: People acting on your behalf have their own interests, and the gap between the two is where outcomes go wrong.
 keywords:
   - incentives
