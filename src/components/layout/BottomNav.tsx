@@ -12,7 +12,7 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="border-rule bg-surface fixed inset-x-0 bottom-0 z-20 border-t md:hidden"
+      className="border-rule bg-surface safe-x fixed inset-x-0 bottom-0 z-20 border-t pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="mx-auto flex max-w-2xl">
         {NAV_DESTINATIONS.map((destination) => {

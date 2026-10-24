@@ -32,6 +32,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  // Lets the page draw under Android gesture bars and iOS home indicators; the
+  // fixed bottom navigation and the main column pad themselves by the safe-area
+  // insets so nothing sits beneath them.
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#eceee8" },
     { media: "(prefers-color-scheme: dark)", color: "#0e1211" },
@@ -49,7 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main" className="mx-auto max-w-2xl px-5 py-8 pb-28 md:pb-16">
+        <main
+          id="main"
+          className="safe-x mx-auto max-w-2xl py-6 pb-[calc(6rem+env(safe-area-inset-bottom))] md:py-8 md:pb-16"
+        >
           {children}
         </main>
         <BottomNav />

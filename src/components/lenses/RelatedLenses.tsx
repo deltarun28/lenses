@@ -5,19 +5,20 @@ export function RelatedLenses({ related }: { related: LensSummary[] }) {
   if (related.length === 0) return null;
 
   return (
-    <section
-      aria-labelledby="related-heading"
-      className="border-rule space-y-3 border-t pt-6"
-    >
+    <section aria-labelledby="related-heading" className="border-rule border-t pt-6">
       <h2 id="related-heading" className="plate text-muted">
         Related lenses
       </h2>
-      <ul className="space-y-2">
+      {/*
+        The link covers its whole row, summary included, so the touch target is
+        the full entry while the accessible name stays the title alone.
+      */}
+      <ul className="divide-rule mt-2 divide-y">
         {related.map((lens) => (
-          <li key={lens.id}>
+          <li key={lens.id} className="group relative py-3">
             <Link
               href={`/lenses/${lens.id}`}
-              className="hover:text-accent block font-medium underline-offset-4 hover:underline"
+              className="group-hover:text-accent block font-medium underline-offset-4 group-hover:underline after:absolute after:inset-0"
             >
               {lens.title}
             </Link>

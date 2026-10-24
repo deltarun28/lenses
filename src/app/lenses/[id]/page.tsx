@@ -40,7 +40,7 @@ export default async function LensPage({ params }: PageProps) {
   const related = published.filter((entry) => lens.relatedLensIds.includes(entry.id));
 
   return (
-    <article className="space-y-8">
+    <article className="space-y-6">
       <header className="space-y-3">
         <div className="flex items-baseline justify-between gap-4">
           <CategoryTags categories={lens.categories} />

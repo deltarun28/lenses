@@ -14,10 +14,10 @@ export function LensNav({
   return (
     <nav
       aria-label="Lens sequence"
-      className="border-rule grid gap-3 border-t pt-6 sm:grid-cols-2"
+      className="border-rule grid gap-1 border-t pt-4 sm:grid-cols-2 sm:gap-3"
     >
       {previous ? (
-        <Link href={`/lenses/${previous.id}`} className="group">
+        <Link href={`/lenses/${previous.id}`} className="group block py-2">
           <span className="plate text-muted">Previous</span>
           <span className="group-hover:text-accent block font-medium">
             {previous.title}
@@ -27,7 +27,7 @@ export function LensNav({
         <span />
       )}
       {next ? (
-        <Link href={`/lenses/${next.id}`} className="group sm:text-right">
+        <Link href={`/lenses/${next.id}`} className="group block py-2 sm:text-right">
           <span className="plate text-muted">Next</span>
           <span className="group-hover:text-accent block font-medium">{next.title}</span>
         </Link>

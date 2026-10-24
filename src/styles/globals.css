@@ -58,6 +58,16 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/*
+ * Side gutter that also clears landscape notches. The viewport uses
+ * viewport-fit=cover, so the insets are real on devices that have them and zero
+ * everywhere else.
+ */
+.safe-x {
+  padding-inline: max(1.25rem, env(safe-area-inset-left))
+    max(1.25rem, env(safe-area-inset-right));
+}
+
 body {
   background-color: var(--paper);
   color: var(--ink);

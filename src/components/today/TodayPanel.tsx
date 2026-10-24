@@ -92,13 +92,13 @@ export function TodayPanel({ lenses }: { lenses: LensSummary[] }) {
           <div className="border-rule flex flex-wrap items-center gap-4 border-t px-5 py-4">
             <Link
               href={`/lenses/${lens.id}`}
-              className="bg-accent text-accent-ink inline-flex items-center rounded-sm px-4 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
+              className="bg-accent text-accent-ink inline-flex min-h-11 items-center rounded-sm px-4 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
             >
               Read today&rsquo;s lens
             </Link>
             <Link
               href="/library"
-              className="text-muted hover:text-ink text-sm underline underline-offset-4"
+              className="text-muted hover:text-ink inline-flex min-h-11 items-center text-sm underline underline-offset-4"
             >
               Browse the library
             </Link>
