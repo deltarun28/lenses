@@ -46,8 +46,8 @@ status: published
 | `status`      | `published` or `draft`. Drafts are excluded everywhere, including routes.                     |
 
 Valid categories: Foundations, Economics & Incentives, Probability & Risk,
-Systems Thinking, Strategy, Leadership, Military Thinking, Psychology,
-Negotiation, AI & Technology, Product Thinking.
+Systems Thinking, Strategy, Leadership, Organisations, Military Thinking,
+Psychology, Expertise & Learning, Negotiation, AI & Technology, Product Thinking.
 
 They are defined in `LENS_CATEGORIES` in `src/domain/lenses/lens.ts`. Adding a
 new category means editing that array.
@@ -99,7 +99,7 @@ concrete.
 ## Tone
 
 The reference file is
-[`src/content/lenses/16-goodharts-law.md`](../src/content/lenses/16-goodharts-law.md).
+[`src/content/lenses/18-goodharts-law.md`](../src/content/lenses/18-goodharts-law.md).
 Match it.
 
 - Concise and practical. Assume an intelligent reader in a hurry.
