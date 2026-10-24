@@ -16,7 +16,7 @@ related:
   - visibility-of-work
   - principal-agent-problem
   - schelling-points
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

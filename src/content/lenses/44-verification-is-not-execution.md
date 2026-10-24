@@ -16,7 +16,7 @@ related:
   - swiss-cheese-model
   - shifting-value-of-expertise
   - tacit-knowledge
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

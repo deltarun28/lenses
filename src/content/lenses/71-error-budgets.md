@@ -16,7 +16,7 @@ related:
   - explore-exploit-tradeoff
   - goodharts-law
   - swiss-cheese-model
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

@@ -16,7 +16,7 @@ related:
   - economics-of-judgement
   - capability-requires-maintenance
   - redesign-before-automation
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

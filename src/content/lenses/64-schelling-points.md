@@ -16,7 +16,7 @@ related:
   - commanders-intent
   - signalling-vs-substance
   - batna
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

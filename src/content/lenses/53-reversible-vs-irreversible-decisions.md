@@ -16,7 +16,7 @@ related:
   - value-of-information
   - margin-of-safety
   - second-order-thinking
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

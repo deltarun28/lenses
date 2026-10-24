@@ -16,7 +16,7 @@ related:
   - design-for-the-exception
   - comparative-advantage
   - cynefin-framework
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

@@ -16,7 +16,7 @@ related:
   - innovators-dilemma
   - verification-is-not-execution
   - economics-of-judgement
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

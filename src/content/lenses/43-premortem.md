@@ -16,7 +16,7 @@ related:
   - abilene-paradox
   - psychological-safety
   - correlated-errors
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

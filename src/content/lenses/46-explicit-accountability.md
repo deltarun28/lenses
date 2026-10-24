@@ -16,7 +16,7 @@ related:
   - extreme-ownership
   - abilene-paradox
   - principal-agent-problem
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

@@ -16,7 +16,7 @@ related:
   - correlated-errors
   - commanders-intent
   - rules-and-their-reasons
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 
@@ -46,7 +46,7 @@ decay without anyone noticing. Mergers, rapid growth, heavy use of contractors a
 cross-disciplinary teams expose their absence, often through words that everyone uses
 and nobody defines in the same way: "done", "risk", "forecast", "customer".
 
-They also have a cost, which the next lens on correlated errors examines: people who
+They also have a cost, which the lens on Correlated Errors examines: people who
 think alike are efficient together and share the same blind spots. The healthiest form
 of shared framework is agreement on how to reason, argue and test claims, rather than
 agreement on the conclusions.

@@ -15,7 +15,7 @@ related:
   - training-for-the-environment
   - verification-is-not-execution
   - map-is-not-the-territory
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

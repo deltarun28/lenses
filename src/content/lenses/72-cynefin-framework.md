@@ -16,7 +16,7 @@ related:
   - fog-of-war
   - explore-exploit-tradeoff
   - economics-of-judgement
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 

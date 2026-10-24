@@ -16,7 +16,7 @@ related:
   - commanders-intent
   - shared-frameworks
   - lindy-effect
-publishedAt: 2026-10-24
+publishedAt: 2026-10-25
 status: published
 ---
 
