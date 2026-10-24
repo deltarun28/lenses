@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LensNav } from "@/components/lenses/LensNav";
-import { LensStepper } from "@/components/lenses/LensStepper";
+import { LensReader } from "@/components/lenses/LensReader";
 import { RelatedLenses } from "@/components/lenses/RelatedLenses";
 import { ObservationEditor } from "@/components/observations/ObservationEditor";
 import { CategoryTags } from "@/components/ui/CategoryTags";
@@ -52,7 +52,7 @@ export default async function LensPage({ params }: PageProps) {
         <p className="lens-prose text-muted">{lens.summary}</p>
       </header>
 
-      <LensStepper content={lens.content} />
+      <LensReader content={lens.content} />
 
       <RelatedLenses related={related} />
       <ObservationEditor lensId={lens.id} />

@@ -81,8 +81,8 @@ Changing one there is a breaking change to every content file.
 cleanly to every domain. If a lens has no honest military application, leave the
 `## Military Example` heading out rather than inventing one — a forced example
 is worse than an absent one, because it teaches a use the lens does not support.
-Omitted examples disappear from the stepper, so a lens with two reads `01 / 06`
-rather than showing a blank card.
+Omitted examples disappear from the lens page and its contents row, rather than
+leaving an empty section.
 
 A heading left in place with nothing under it counts as omitted, so either form
 works. What is rejected is a lens with **no** examples at all: the format's whole

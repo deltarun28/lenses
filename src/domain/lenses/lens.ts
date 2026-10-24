@@ -37,7 +37,7 @@ export const LENS_SECTION_HEADINGS = {
 
 export type LensSectionKey = keyof typeof LENS_SECTION_HEADINGS;
 
-/** Reading order of the stepper. Related lenses are appended from frontmatter. */
+/** Reading order of a lens. Related lenses are appended from frontmatter. */
 export const LENS_SECTION_ORDER: readonly LensSectionKey[] = [
   "principle",
   "explanation",
@@ -73,7 +73,7 @@ export const LENS_REQUIRED_SECTION_KEYS = LENS_SECTION_ORDER.filter(
     !(LENS_EXAMPLE_SECTION_KEYS as readonly LensSectionKey[]).includes(key),
 );
 
-/** Short labels used in the stepper UI. */
+/** Short labels used in the lens contents row. */
 export const LENS_SECTION_LABELS: Record<LensSectionKey, string> = {
   principle: "Principle",
   explanation: "Explanation",

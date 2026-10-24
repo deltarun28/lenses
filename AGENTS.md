@@ -31,8 +31,8 @@ unreachable, it is wrong.
    Storage is touched only through a repository. `lib/storage.ts` is the only
    file that references `localStorage`.
 3. **Server components by default.** Add `"use client"` only where browser
-   state, storage or event handlers require it. Today, the stepper, the library
-   browser and the observation components are client; everything else is not.
+   state, storage or event handlers require it. Today, the library browser and
+   the observation components are client; everything else is not.
 4. **Pure logic stays pure.** Dates, day selection, search and content parsing
    are pure functions with unit tests. Do not put branching logic in components.
 5. **No `any`.** If it is unavoidable, document why on the line above.
