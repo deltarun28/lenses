@@ -69,4 +69,53 @@ test.describe("Reading a lens on a phone", () => {
     await page.mouse.click(rowBox!.x + rowBox!.width - 8, rowBox!.y + rowBox!.height - 8);
     await expect(page).toHaveURL(/\/lenses\/second-order-thinking$/);
   });
+  test("the observation follows the lens, before related lenses", async ({ page }) => {
+    await page.goto("lenses/inversion");
+    const order = await page
+      .locator("article")
+      .evaluate((article) =>
+        [...article.querySelectorAll("section[aria-labelledby]")].map((section) =>
+          section.getAttribute("aria-labelledby"),
+        ),
+      );
+    expect(order.slice(-3)).toEqual([
+      "common-misuse-heading",
+      "observation-heading",
+      "related-heading",
+    ]);
+  });
+
+  test("the contents row reaches the observation in one tap", async ({ page }) => {
+    await page.goto("lenses/inversion");
+    const contents = page.getByRole("navigation", { name: "Sections" });
+    const link = contents.getByRole("link", { name: "Your observation" });
+    await link.scrollIntoViewIfNeeded();
+    await link.tap();
+
+    await expect(page).toHaveURL(/#observation$/);
+    await expect(
+      page.getByRole("heading", { name: "Your observation", level: 2 }),
+    ).toBeInViewport();
+    await expect(page.getByRole("textbox", { name: "Observation" })).toBeInViewport();
+  });
+
+  test("a scrolling chip row fades only the edge with more to show", async ({ page }) => {
+    await page.goto("library");
+    const row = page.getByRole("group", { name: "Filter by category" });
+    const fades = () =>
+      row.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return [
+          style.getPropertyValue("--row-fade-start").trim(),
+          style.getPropertyValue("--row-fade-end").trim(),
+        ];
+      });
+
+    const [startAtStart, endAtStart] = await fades();
+    expect(startAtStart).toBe("0px");
+    expect(endAtStart).not.toBe("0px");
+
+    await row.evaluate((element) => (element.scrollLeft = element.scrollWidth));
+    await expect.poll(fades).toEqual([expect.not.stringMatching(/^0px$/), "0px"]);
+  });
 });

@@ -52,10 +52,14 @@ export default async function LensPage({ params }: PageProps) {
         <p className="lens-prose text-muted">{lens.summary}</p>
       </header>
 
-      <LensReader content={lens.content} />
+      <LensReader
+        content={lens.content}
+        trailingLink={{ href: "#observation", label: "Your observation" }}
+      />
 
-      <RelatedLenses related={related} />
+      {/* Reflect on the lens first, then move on to related lenses. */}
       <ObservationEditor lensId={lens.id} />
+      <RelatedLenses related={related} />
       <LensNav previous={previous} next={next} />
     </article>
   );

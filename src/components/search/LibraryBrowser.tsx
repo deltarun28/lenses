@@ -91,7 +91,7 @@ export function LibraryBrowser({ lenses }: { lenses: LensSummary[] }) {
       <div
         role="group"
         aria-label="Filter by category"
-        className="-mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
+        className="scroll-row -mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
       >
         <button
           type="button"

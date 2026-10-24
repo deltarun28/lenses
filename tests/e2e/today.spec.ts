@@ -34,7 +34,9 @@ test.describe("Today", () => {
   test("shows every section of a lens in reading order", async ({ page }) => {
     await page.goto("lenses/inversion");
 
-    const headings = await page.locator("article section[id] > h2").allInnerTexts();
+    const headings = await page
+      .locator("article section[id]:not(#observation) > h2")
+      .allInnerTexts();
     expect(headings.map((text) => text.toLowerCase())).toEqual([
       "principle",
       "explanation",
@@ -53,7 +55,8 @@ test.describe("Today", () => {
 
     const contents = page.getByRole("navigation", { name: "Sections" });
     await expect(contents.getByRole("link", { name: "Military" })).toHaveCount(0);
-    await expect(contents.getByRole("link")).toHaveCount(6);
+    // Six sections, plus the link to the reader's observation.
+    await expect(contents.getByRole("link")).toHaveCount(7);
     await expect(
       page.getByRole("heading", { name: "Military Example", level: 2 }),
     ).toHaveCount(0);

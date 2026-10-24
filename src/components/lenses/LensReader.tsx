@@ -13,7 +13,8 @@ import { cn } from "@/lib/cn";
  * A server component: reading needs no JavaScript, the browser's own scrolling,
  * find-in-page and heading navigation all work, and each section has an anchor
  * (`#questions`) so a reader can jump to it or link to it. The contents row is
- * plain links, one row that scrolls sideways on a phone.
+ * plain links, one row that scrolls sideways on a phone, and can end with a link
+ * to something after the lens, such as the reader's observation.
  */
 
 interface ReaderSection {
@@ -44,20 +45,30 @@ function buildSections(content: LensContent): ReaderSection[] {
   }));
 }
 
-export function LensReader({ content }: { content: LensContent }) {
+export function LensReader({
+  content,
+  trailingLink,
+}: {
+  content: LensContent;
+  trailingLink?: { href: string; label: string };
+}) {
   const sections = buildSections(content);
+  const links = [
+    ...sections.map((section) => ({ href: `#${section.id}`, label: section.label })),
+    ...(trailingLink ? [trailingLink] : []),
+  ];
 
   return (
     <div className="space-y-8">
       <nav aria-label="Sections">
-        <ol className="-mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
-          {sections.map((section) => (
-            <li key={section.key} className="shrink-0">
+        <ol className="scroll-row -mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
+          {links.map((link) => (
+            <li key={link.href} className="shrink-0">
               <a
-                href={`#${section.id}`}
+                href={link.href}
                 className="plate border-rule text-muted hover:text-ink inline-flex min-h-11 items-center rounded-sm border px-3 whitespace-nowrap transition-colors"
               >
-                {section.label}
+                {link.label}
               </a>
             </li>
           ))}

@@ -43,10 +43,11 @@ export function ObservationEditor({ lensId }: { lensId: string }) {
 
   return (
     <section
+      id="observation"
       aria-labelledby="observation-heading"
-      className="border-rule space-y-3 border-t pt-6"
+      className="border-rule scroll-mt-4 space-y-3 border-t pt-6"
     >
-      <h2 id="observation-heading" className="plate text-muted">
+      <h2 id="observation-heading" className="plate text-accent">
         Your observation
       </h2>
       <p className="text-muted max-w-prose text-sm">
