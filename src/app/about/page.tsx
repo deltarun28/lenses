@@ -22,9 +22,9 @@ export default async function AboutPage() {
           says, why it holds, and what it looks like in practice.
         </p>
         <p>
-          Every lens carries three worked examples — one from military strategy, one from
-          leadership and organisational decision-making, and one from building products
-          and businesses. The same idea seen in three settings is easier to recognise in a
+          Each lens includes one or more worked examples from military strategy,
+          leadership and organisational decision-making, or building products and
+          businesses. The same idea seen in different settings is easier to recognise in a
           fourth.
         </p>
         <p>

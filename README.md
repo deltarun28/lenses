@@ -8,9 +8,9 @@ Open it on a phone and add it to the home screen: menu → _Install app_ on
 Android, Share → _Add to Home Screen_ on iOS.
 
 Each lens is a decision tool — a mental model, framework or strategic concept —
-written as a short field-manual entry with three worked examples: military
-strategy, leadership and organisational decision-making, and building products
-and businesses.
+written as a short field-manual entry with one or more worked examples from
+military strategy, leadership and organisational decision-making, and building
+products and businesses.
 
 The app is a progressive web app. It installs to the home screen, works offline
 for anything already loaded, requires no account, and stores your notes on your
@@ -61,8 +61,9 @@ Playwright needs its browser once: `npx playwright install chromium`.
 ## Adding content
 
 Lenses are Markdown files in `src/content/lenses/`, one per file, with YAML
-frontmatter and seven required `##` sections. Adding a lens is a content change
-only — no application code needs to change.
+frontmatter, four required `##` sections, and up to three optional worked-example
+sections. Adding a lens is a content change only — no application code needs to
+change.
 
 Full instructions, including the exact section headings, are in
 [`docs/content-authoring.md`](docs/content-authoring.md).
