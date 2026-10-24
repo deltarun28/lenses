@@ -64,7 +64,7 @@ export function DaySetter({
             onKeyDown={(event) => {
               if (event.key === "Enter") submit();
             }}
-            className="border-rule bg-surface w-28 rounded-sm border px-3 py-2.5 font-mono text-sm"
+            className="border-rule bg-surface min-h-11 w-28 rounded-sm border px-3 py-2.5 font-mono text-base"
           />
         </div>
         <ActionButton variant="secondary" onClick={submit}>
