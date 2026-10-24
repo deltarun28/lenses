@@ -27,16 +27,22 @@ function expectedPrecachePaths(baseURL: string | undefined): string[] {
 }
 
 async function waitForWorker(page: Page) {
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null, undefined, {
-    timeout: 30_000,
-  });
+  await page.waitForFunction(
+    () => navigator.serviceWorker.controller !== null,
+    undefined,
+    {
+      timeout: 30_000,
+    },
+  );
 }
 
 /** Paths of every entry in this app's precache, however the cache is named. */
 async function precachedPaths(page: Page): Promise<string[]> {
   return page.evaluate(async () => {
     const paths: string[] = [];
-    for (const name of (await caches.keys()).filter((n) => n.startsWith("serwist-precache"))) {
+    for (const name of (await caches.keys()).filter((n) =>
+      n.startsWith("serwist-precache"),
+    )) {
       for (const request of await (await caches.open(name)).keys()) {
         paths.push(new URL(request.url).pathname);
       }
@@ -50,7 +56,10 @@ async function cacheNames(page: Page): Promise<string[]> {
 }
 
 test.describe("Offline cache", () => {
-  test("the install precaches the main pages and every published lens", async ({ page, baseURL }) => {
+  test("the install precaches the main pages and every published lens", async ({
+    page,
+    baseURL,
+  }) => {
     await page.goto("./");
     await waitForWorker(page);
 
@@ -60,19 +69,30 @@ test.describe("Offline cache", () => {
       .toEqual(expect.arrayContaining(expected));
   });
 
-  test("a lens never opened on this device opens with the network off", async ({ page, context }) => {
+  test("a lens never opened on this device opens with the network off", async ({
+    page,
+    context,
+  }) => {
     await page.goto("./");
     await waitForWorker(page);
     await expect
       .poll(() => precachedPaths(page), { timeout: 20_000 })
-      .toEqual(expect.arrayContaining([new URL("lenses/margin-of-safety", page.url()).pathname]));
+      .toEqual(
+        expect.arrayContaining([new URL("lenses/margin-of-safety", page.url()).pathname]),
+      );
 
     await context.setOffline(true);
     await page.goto("lenses/margin-of-safety");
-    await expect(page.getByRole("heading", { name: /margin of safety/i, level: 1 })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /margin of safety/i, level: 1 }),
+    ).toBeVisible();
   });
 
-  test("after one online visit, every published lens opens with the network off", async ({ page, context, baseURL }) => {
+  test("after one online visit, every published lens opens with the network off", async ({
+    page,
+    context,
+    baseURL,
+  }) => {
     test.setTimeout(240_000);
     await page.goto("./");
     await waitForWorker(page);
@@ -84,36 +104,60 @@ test.describe("Offline cache", () => {
     for (const id of publishedLensIds()) {
       await page.goto(`lenses/${id}`);
       await expect(page.locator("h1").first(), `lens ${id}`).toBeVisible();
-      await expect(page.getByRole("heading", { name: /not available offline/i }), `lens ${id}`).toHaveCount(0);
+      await expect(
+        page.getByRole("heading", { name: /not available offline/i }),
+        `lens ${id}`,
+      ).toHaveCount(0);
     }
   });
 
-  test("moving inside the app to a lens never opened works with the network off", async ({ page, context }) => {
+  test("moving inside the app to a lens never opened works with the network off", async ({
+    page,
+    context,
+  }) => {
     await page.goto("./");
     await waitForWorker(page);
     await expect
       .poll(() => precachedPaths(page), { timeout: 20_000 })
-      .toEqual(expect.arrayContaining([new URL("lenses/margin-of-safety", page.url()).pathname]));
+      .toEqual(
+        expect.arrayContaining([new URL("lenses/margin-of-safety", page.url()).pathname]),
+      );
 
     await page.goto("library");
     await context.setOffline(true);
-    await page.getByRole("link", { name: /margin of safety/i }).first().click();
-    await expect(page.getByRole("heading", { name: /margin of safety/i, level: 1 })).toBeVisible();
+    await page
+      .getByRole("link", { name: /margin of safety/i })
+      .first()
+      .click();
+    await expect(
+      page.getByRole("heading", { name: /margin of safety/i, level: 1 }),
+    ).toBeVisible();
   });
 
   test("every cache this app creates is named for Lenses", async ({ page }) => {
     await page.goto("./");
     await waitForWorker(page);
     await page.goto("library");
-    await page.getByRole("link", { name: /inversion/i }).first().click();
-    await expect(page.getByRole("heading", { name: /inversion/i, level: 1 })).toBeVisible();
+    await page
+      .getByRole("link", { name: /inversion/i })
+      .first()
+      .click();
+    await expect(
+      page.getByRole("heading", { name: /inversion/i, level: 1 }),
+    ).toBeVisible();
 
     for (const name of await cacheNames(page)) {
-      expect(name.startsWith("serwist-precache") || name.startsWith("lenses-"), `cache "${name}" is not named for Lenses`).toBe(true);
+      expect(
+        name.startsWith("serwist-precache") || name.startsWith("lenses-"),
+        `cache "${name}" is not named for Lenses`,
+      ).toBe(true);
     }
   });
 
-  test("an unsaved observation survives the connection coming back", async ({ page, context }) => {
+  test("an unsaved observation survives the connection coming back", async ({
+    page,
+    context,
+  }) => {
     await page.goto("./");
     await waitForWorker(page);
     await page.goto("lenses/inversion");
@@ -130,11 +174,16 @@ test.describe("Offline cache", () => {
     await expect(page.getByRole("textbox", { name: "Observation" })).toHaveValue(draft);
   });
 
-  test("saved observations are still there after a restart with the network off", async ({ page, context }) => {
+  test("saved observations are still there after a restart with the network off", async ({
+    page,
+    context,
+  }) => {
     await page.goto("./");
     await waitForWorker(page);
     await page.goto("lenses/inversion");
-    await page.getByRole("textbox", { name: "Observation" }).fill("Kept across a restart.");
+    await page
+      .getByRole("textbox", { name: "Observation" })
+      .fill("Kept across a restart.");
     await page.getByRole("button", { name: "Save observation" }).click();
     await expect(page.getByRole("status")).toHaveText(/saved on this device/i);
 

@@ -15,8 +15,8 @@ export default function OfflinePage() {
         This page is not available offline
       </h1>
       <p className="lens-prose text-muted">
-        Lenses and its pages are saved on this device after one visit with a
-        connection. This address is not part of Lenses, so it needs a connection.
+        Lenses and its pages are saved on this device after one visit with a connection.
+        This address is not part of Lenses, so it needs a connection.
       </p>
       <ul className="space-y-2">
         <li>

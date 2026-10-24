@@ -59,14 +59,18 @@ test.describe("Offline update", () => {
       if (!pathname.startsWith(BASE)) return void res.writeHead(404).end();
       const rel = decodeURIComponent(pathname.slice(BASE.length));
       const target = path.normalize(path.join(root, rel));
-      if (target !== root && !target.startsWith(`${root}${path.sep}`)) return void res.writeHead(403).end();
-      const candidates = rel === "" || rel.endsWith("/")
-        ? [path.join(target, "index.html")]
-        : [target, `${target}.html`, path.join(target, "index.html")];
+      if (target !== root && !target.startsWith(`${root}${path.sep}`))
+        return void res.writeHead(403).end();
+      const candidates =
+        rel === "" || rel.endsWith("/")
+          ? [path.join(target, "index.html")]
+          : [target, `${target}.html`, path.join(target, "index.html")];
       for (const candidate of candidates) {
         try {
           const body = await readFile(candidate);
-          res.writeHead(200, { "content-type": MIME[path.extname(candidate)] ?? "application/octet-stream" });
+          res.writeHead(200, {
+            "content-type": MIME[path.extname(candidate)] ?? "application/octet-stream",
+          });
           return void res.end(body);
         } catch {
           // Try the next candidate.
@@ -83,7 +87,9 @@ test.describe("Offline update", () => {
     if (previous) await rm(previous, { recursive: true, force: true });
   });
 
-  test("an update after the cache was deleted restores every page and keeps observations", async ({ browser }) => {
+  test("an update after the cache was deleted restores every page and keeps observations", async ({
+    browser,
+  }) => {
     const app = `${origin}${BASE}`;
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -91,9 +97,15 @@ test.describe("Offline update", () => {
     // The previous build, installed and in use, with an observation saved on it.
     root = previous;
     await page.goto(`${app}/`);
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null, undefined, { timeout: 30_000 });
+    await page.waitForFunction(
+      () => navigator.serviceWorker.controller !== null,
+      undefined,
+      { timeout: 30_000 },
+    );
     await page.goto(`${app}/lenses/inversion`);
-    await page.getByRole("textbox", { name: "Observation" }).fill("Written on the previous build.");
+    await page
+      .getByRole("textbox", { name: "Observation" })
+      .fill("Written on the previous build.");
     await page.getByRole("button", { name: "Save observation" }).click();
     await expect(page.getByRole("status")).toHaveText(/saved on this device/i);
 
@@ -109,17 +121,24 @@ test.describe("Offline update", () => {
     const precached = () =>
       page.evaluate(async () => {
         const paths: string[] = [];
-        for (const name of (await caches.keys()).filter((n) => n.startsWith("serwist-precache"))) {
-          for (const request of await (await caches.open(name)).keys()) paths.push(new URL(request.url).pathname);
+        for (const name of (await caches.keys()).filter((n) =>
+          n.startsWith("serwist-precache"),
+        )) {
+          for (const request of await (await caches.open(name)).keys())
+            paths.push(new URL(request.url).pathname);
         }
         return paths;
       });
     const lensPaths = publishedLensIds().map((id) => `${BASE}/lenses/${id}`);
-    await expect.poll(precached, { timeout: 60_000 }).toEqual(expect.arrayContaining(lensPaths));
+    await expect
+      .poll(precached, { timeout: 60_000 })
+      .toEqual(expect.arrayContaining(lensPaths));
 
     await context.setOffline(true);
     await page.goto(`${app}/lenses/margin-of-safety`);
-    await expect(page.getByRole("heading", { name: /margin of safety/i, level: 1 })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /margin of safety/i, level: 1 }),
+    ).toBeVisible();
 
     await page.goto(`${app}/observations`);
     await expect(page.getByText("Written on the previous build.")).toBeVisible();
